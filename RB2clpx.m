@@ -1,0 +1,11 @@
+function [Y] = RB2clpx(X)
+X0 = X.w;
+Xi = X.x;
+Xj = X.y;
+Xk = X.z;
+q1 = complex((X0+Xj),(Xi+Xk));
+q2 = complex((X0-Xj),(Xi-Xk));
+[m1,n1] = size(X);
+Y = zeros(2*m1,2*n1);
+Y(1:m1,1:n1) = q1;
+Y(m1+1:2*m1,n1+1:2*n1) = q2;

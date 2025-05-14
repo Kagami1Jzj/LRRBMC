@@ -1,0 +1,12 @@
+function [X] = RBbackSVD(U,A,V)
+[n1,n2] = size(A);
+Y1 = U * A * V';
+T1 = zeros(n1/2,n2/2);
+T2 = zeros(n1/2,n2/2);
+T1 = Y1(1:n1/2,1:n2/2);
+T2 = Y1(n1/2+1:n1,n2/2+1:n2);
+T1real = real(T1);
+T1imag = imag(T1);
+T2real = real(T2);
+T2imag = imag(T2);
+X = quaternion((T1real + T2real),(T1imag + T2imag),(T1real - T2real),(T1imag - T2imag))./2;

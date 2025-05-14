@@ -1,0 +1,14 @@
+function X = RBinv(A)
+X0 = A.w;
+Xi = A.x;
+Xj = A.y;
+Xk = A.z;
+q1 = complex((X0+Xj),(Xi+Xk));
+q2 = complex((X0-Xj),(Xi-Xk));
+q1inv = inv(q1);
+q2inv = inv(q2);
+q1real = real(q1inv);
+q1imag = imag(q1inv);
+q2real = real(q2inv);
+q2imag = imag(q2inv);
+X = quaternion((q1real + q2real),(q1imag + q2imag),(q1real - q2real),(q1imag - q2imag))./2;
